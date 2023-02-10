@@ -3,17 +3,27 @@ import PropTypes from 'prop-types';
 
 import './SingleCard.css';
 
-function SingleCard({ src }) {
+function SingleCard({ card, handleChoice }) {
+  const handleClick = () => {
+    handleChoice(card);
+  };
+
   return (
     <div className='card'>
-      <img className='card-front' src={src} alt="card front" />
-      <img className='card-back' src='/img/cover.png' alt="card back" />
+      <img className='card-front' src={card.src} alt="card front" />
+      <img className='card-back'
+        src='https://icongr.am/entypo/help.svg?size=120&color=ffffff'
+        alt="card back"
+        onClick={handleClick}
+      />
+
     </div>
   );
 }
 
 SingleCard.propTypes = {
-  src: PropTypes.string
+  card: PropTypes.object,
+  handleChoice: PropTypes.func
 };
 
 export default SingleCard;
