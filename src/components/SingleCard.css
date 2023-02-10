@@ -8,3 +8,25 @@
   border: 2px solid #fff;
   border-radius: 4px;
 }
+
+.card-front {
+  background-color: rgb(60, 60, 60);
+  position: absolute;
+  transform: rotateY(90deg);
+  transition: all .3s ease-in;
+}
+
+.flipped .card-front {
+  transform: rotateY(0deg);
+  transition-delay: .2s;
+}
+
+.card-back {
+  background-color: rgb(20, 20, 20);
+  transform: rotateY(0deg);
+  transition: all .2s ease-in;
+}
+
+.flipped .card-back {
+  transform: rotateY(90deg);
+}

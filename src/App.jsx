@@ -52,6 +52,9 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
 
+  let blockBoard = false;
+  if (choiceOne && choiceTwo) blockBoard = true;
+
   // when the choices are set, evaluate if they're match or not
   useEffect(() => {
     if (choiceOne && choiceTwo) {
@@ -68,7 +71,7 @@ function App() {
         });
         resetTurn();
       } else {
-        resetTurn();
+        setTimeout(() => resetTurn(), 800);
       }
     }
   }, [choiceOne, choiceTwo]);
@@ -110,6 +113,8 @@ function App() {
             key={card.id}
             card={card}
             handleChoice={handleChoice}
+            flipped={ card.matched || card === choiceOne || card === choiceTwo }
+            blockBoard={blockBoard}
           />
 
         )) }
