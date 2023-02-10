@@ -5,7 +5,9 @@ import './SingleCard.css';
 
 function SingleCard({ card, handleChoice, flipped, blockBoard }) {
   const handleClick = () => {
-    handleChoice(card);
+    if (!blockBoard) {
+      handleChoice(card);
+    }
   };
 
   return (
@@ -15,7 +17,7 @@ function SingleCard({ card, handleChoice, flipped, blockBoard }) {
         <img className='card-back'
           src='https://icongr.am/entypo/help.svg?size=120&color=ffffff'
           alt="card back"
-          onClick={!blockBoard && handleClick}
+          onClick={handleClick}
         />
       </div>
     </div>

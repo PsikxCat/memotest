@@ -51,14 +51,15 @@ function App() {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [blockBoard, setBlockBoard] = useState(false);
 
-  let blockBoard = false;
-  if (choiceOne && choiceTwo) blockBoard = true;
+  // if (choiceOne && choiceTwo) setBlockBoard(true);
 
   // when the choices are set, evaluate if they're match or not
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      // console.log('here');
+      setBlockBoard(true);
+
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -71,17 +72,24 @@ function App() {
         });
         resetTurn();
       } else {
-        setTimeout(() => resetTurn(), 800);
+        setTimeout(() => resetTurn(), 900);
       }
     }
   }, [choiceOne, choiceTwo]);
 
-  // shuffle cards
+  // start new game automatically
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
+  // shuffle cards // ! start game
   const shuffleCards = () => {
     const suffleItems = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.floor(Math.random() * Date.now()).toString(16) }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(suffleItems);
     setTurns(0);
   };
@@ -96,6 +104,7 @@ function App() {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurn) => prevTurn + 1);
+    setBlockBoard(false);
   };
 
   return (
@@ -119,6 +128,8 @@ function App() {
 
         )) }
       </div>
+
+      <p>Turns: { turns }</p>
     </main>
   );
 }

@@ -5,7 +5,7 @@
 .card img {
   width: 100%;
   display: block;
-  border: 2px solid #fff;
+  border: 3px solid rgba(255, 255, 255, .5);
   border-radius: 4px;
 }
 
@@ -17,14 +17,15 @@
 }
 
 .flipped .card-front {
-  transform: rotateY(0deg);
   transition-delay: .2s;
+  transform: rotateY(0deg);
 }
 
 .card-back {
   background-color: rgb(20, 20, 20);
-  transform: rotateY(0deg);
+  /* transform: rotateY(0deg); */
   transition: all .2s ease-in;
+  transition-delay: .2s;
 }
 
 .flipped .card-back {
